@@ -14,7 +14,8 @@ app.get('/', function (req, res) {
 server.listen(3000);
 
 matrix = [];
-
+Weather = "Garun";
+WeatherInt = 1;
 
 
 function genMatrix(w, h) {
@@ -32,6 +33,7 @@ function genMatrix(w, h) {
     }
     return matrix;
 }
+
 
 var Grass = require("./class.grass.js");
 var Rock = require("./class.rock.js");
@@ -64,27 +66,56 @@ for (var y in matrix) {
 function drawUrish() {
 
     for (var i in grassArr) {
-        grassArr[i].mul();
+        if(Weather != "Dzmer") {
+            grassArr[i].mul();
+        }
     }
 
     for (var i in xotakerArr) {
         xotakerArr[i].bazmanal();
         xotakerArr[i].utel();
-        xotakerArr[i].mahanal();
+        if(Weather == "Dzmer") {
+            xotakerArr[i].mahanal();
+        }
     }
 
     for (var i in gishatichArr) {
+        if(Weather != "Dzmer") {
+            gishatichArr[i].utel();
+        }
         gishatichArr[i].bazmanal();
-        gishatichArr[i].utel();
         gishatichArr[i].mahanal();
     }
     io.sockets.emit("matrix", matrix);
 
 }
 
+function ChangeWeather() {
+    WeatherInt++;
+    if(WeatherInt == 5) {  
+        WeatherInt = 1;
+    }
+    if(WeatherInt == 1) {
+        Weather = "Garun";
+        console.log("Garun");
+    }
+    if(WeatherInt == 2) {
+        Weather = "Amar";
+        console.log("Amar");
+    }
+    if(WeatherInt == 3) {
+        Weather = "Ashun";
+        console.log("Ashun");
+    }
+    if(WeatherInt == 4) {
+        Weather = "Dzmer";
+        console.log("Dzmer");
+    }
+}
 
 
 setInterval(drawUrish, 200);
+setInterval(ChangeWeather, 5000);
 
 io.sockets.on('connection', function (socket) {
 });
