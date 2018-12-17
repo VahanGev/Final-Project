@@ -1,5 +1,6 @@
 var Himnakan = require("./himnakan.js");
-
+PredCneliutyun = 0;
+PredMahacutyun = 0;
 
 module.exports = class Gishatich extends Himnakan{
     constructor(x, y, index) {
@@ -65,6 +66,7 @@ module.exports = class Gishatich extends Himnakan{
             this.energy = 1;
             var newgishatich = new Gishatich(vand[0], vand[1], 3);
             gishatichArr.push(newgishatich);
+            PredCneliutyun++;
         }
     }
 
@@ -74,9 +76,9 @@ module.exports = class Gishatich extends Himnakan{
             for (var i in gishatichArr) {
                 if (gishatichArr[i].x == this.x && gishatichArr[i].y == this.y) {
                     gishatichArr.splice(i, 1);
+                    PredMahacutyun++;
                 }
             }
         }
     }
 }
-

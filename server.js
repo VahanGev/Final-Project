@@ -3,6 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var socket = require("socket.io")
 var io = socket(server);
+var fs = require('fs');
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
@@ -92,7 +93,7 @@ function drawUrish() {
 
 function ChangeWeather() {
     WeatherInt++;
-    if(WeatherInt == 5) {  
+    if(WeatherInt == 5) {
         WeatherInt = 1;
     }
     if(WeatherInt == 1) {
@@ -119,3 +120,8 @@ setInterval(ChangeWeather, 5000);
 
 io.sockets.on('connection', function (socket) {
 });
+
+setTimeout(function(){
+  var file  = "predator.json";
+  fs.appendFileSync(file, 'Predator = \n{\n"Spawn": PredCneliutyun,\n "Deaths": PredMahacutyun\n}');
+}, 5000);
