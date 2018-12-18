@@ -1,5 +1,8 @@
 var Himnakan = require("./himnakan.js");
-
+GrassEatCneliutyun = 0;
+GrassEatMahacutyun = 0;
+GrassEaterEatCount = 0;
+GrassEatMoveCount = 0;
 
 module.exports = class Xotaker extends Himnakan{
     constructor(x, y, index) {
@@ -35,6 +38,7 @@ module.exports = class Xotaker extends Himnakan{
             this.x = vand[0]; this.y = vand[1];
             matrix[this.y][this.x] = 2;
             this.multiply = 0;
+            GrassEatMoveCount++;
         }
     }
 
@@ -56,7 +60,7 @@ module.exports = class Xotaker extends Himnakan{
             }
         }
         else this.sharjvel();
-
+        GrassEaterEatCount++;
     }
 
     bazmanal() {
@@ -67,6 +71,7 @@ module.exports = class Xotaker extends Himnakan{
             this.energy = 1;
             var newxotaker = new Xotaker(vand[0], vand[1], 2);
             xotakerArr.push(newxotaker);
+            GrassEatCneliutyun++;
         }
     }
 
@@ -76,6 +81,7 @@ module.exports = class Xotaker extends Himnakan{
             for (var i in xotakerArr) {
                 if (xotakerArr[i].x == this.x && xotakerArr[i].y == this.y) {
                     xotakerArr.splice(i, 1);
+                    GrassEatMahacutyun++;
                 }
             }
         }

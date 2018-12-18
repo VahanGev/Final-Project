@@ -1,5 +1,5 @@
 var Himnakan = require("./himnakan.js");
-
+GrassCneliutyun = 0;
 
 module.exports = class Grass extends Himnakan{
     constructor(x, y, index) {
@@ -46,6 +46,7 @@ module.exports = class Grass extends Himnakan{
             grassArr.push(newGrass);
             matrix[this.direction[1]][this.direction[0]] = this.index;
             this.multiply = 0;
+            GrassCneliutyun++;
         }
     }
 }

@@ -1,7 +1,8 @@
 var Himnakan = require("./himnakan.js");
 PredCneliutyun = 0;
 PredMahacutyun = 0;
-
+PredEatCount = 0;
+PredMoveCount = 0;
 module.exports = class Gishatich extends Himnakan{
     constructor(x, y, index) {
         super(x,y,index,)
@@ -37,6 +38,7 @@ module.exports = class Gishatich extends Himnakan{
             this.x = vand[0]; this.y = vand[1];
             matrix[this.y][this.x] = 3;
         }
+        PredMoveCount++;
     }
 
     utel() {
@@ -56,6 +58,7 @@ module.exports = class Gishatich extends Himnakan{
             }
         }
         else this.sharjvel();
+        PredEatCount++;
     }
 
     bazmanal() {
