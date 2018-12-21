@@ -150,21 +150,36 @@ function Blood_moon() {
 setInterval(drawUrish, 200);
 setInterval(function(){
     ChangeWeather();
-    Blood_moon();
 }, 5000);
+setInterval(Blood_moon, 15000);
 
 io.sockets.on('connection', function (socket) {
     console.log("New connection: " + socket.id);
 });
 
-setTimeout(function () {
+
+//=====[Creating Stats]=====
+setInterval(function () {
     var file1 = "predator.json";
+    if (fs.existsSync("predator.json")) {
+      fs.unlink('predator.json', function (err) {
+      if (err) throw err;
+      });
+    }
     fs.appendFileSync(file1, 'var predator = \n{\n"Spawns": ' + PredCneliutyun + ',\n "Deaths": ' + PredMahacutyun + ',\n "Ate": ' + PredEatCount + ',\n"Move counter": ' + PredMoveCount + '\n}');
     var file3 = "grasseater.json";
+    if (fs.existsSync("grasseater.json")) {
+      fs.unlink('grasseater.json', function (err) {
+      if (err) throw err;
+      });
+    }
     fs.appendFileSync(file3, 'var grassEater = \n{\n"Spawns": ' + GrassEatCneliutyun + ',\n "Deaths": ' + GrassEatMahacutyun + ',\n "Ate": ' + GrassEaterEatCount + ',\n"Move counter": ' + GrassEatMoveCount + '\n}');
-}, 5000);
-
-setTimeout(function () {
     var file2 = "grass.json";
+    if (fs.existsSync("grass.json")) {
+      fs.unlink('grass.json', function (err) {
+      if (err) throw err;
+      });
+    }
     fs.appendFileSync(file2, 'var grass = \n{\n"Spawns": ' + GrassCneliutyun + '\n}');
+    console.log("[Broadcasting] - Statistics Updated!");
 }, 10000);

@@ -22,13 +22,13 @@ function drawMatrix(matrix) {
             else if (matrix[y][x] == 1) {
                 if(Weather == "Dzmer") {
                    fill("white");
-                } 
+                }
                  else {
                    fill("green");
                 }
                 if(Blood_Moon == "Start") {
                     fill("#FF6666");
-                } if(Blood_Moon == "Finish") {
+                } if(Blood_Moon == "Finish" && Weather != "Dzmer") {
                     fill("green");
                 }
             }
